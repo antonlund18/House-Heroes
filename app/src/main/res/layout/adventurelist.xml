@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="16dp"
+    android:id="@+id/adventurelist"
+    android:layout_centerHorizontal="true">
+
+
+
+    <TextView
+        android:id="@+id/adventure_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="19sp"
+        android:text="@string/adventure_title"/>
+
+    <TextView
+        android:id="@+id/adventure_boss"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adventure_title"
+        android:layout_centerHorizontal="true"
+        android:text="@string/boss_name"/>
+
+    <TextView
+        android:id="@+id/bosshp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/adventure_boss"
+        android:layout_centerHorizontal="true"
+        android:text="@string/hp_100_100"/>
+
+
+        <TextView
+            android:id="@+id/reward"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/reward"
+            android:layout_below="@id/adventure_reqlvl"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/gold"
+            app:srcCompat="@drawable/gold"
+            android:layout_alignBottom="@id/reward"
+            android:layout_toRightOf="@id/reward"
+            android:layout_marginLeft="10dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/_50"
+            android:id="@+id/questgold"
+            android:layout_alignBottom="@id/gold"
+            android:layout_toRightOf="@id/gold"
+            android:layout_marginLeft="5dp"
+            />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:id="@+id/xp"
+            app:srcCompat="@drawable/xp"
+            android:layout_toRightOf="@id/questgold"
+            android:layout_alignBottom="@id/questgold"
+            android:layout_marginLeft="30dp"
+            />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_50"
+        android:id="@+id/questxp"
+        android:layout_toRightOf="@id/xp"
+        android:layout_alignBottom="@id/xp"
+        android:layout_marginLeft="5dp"
+        />
+
+    <TextView
+        android:id="@+id/adventure_reqlvl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bosshp"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorAccent" />
+</RelativeLayout>

@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">House Heroes</string>
+    <string name="hero_name">BLE</string>
+    <string name="exp">X</string>
+    <string name="neededExp">XXXX</string>
+    <string name="avatar">Avatar</string>
+    <string name="slash">/</string>
+    <string name="level">LEVEL: X</string>
+    <string name="questlog">Missions</string>
+    <string name="house">House</string>
+    <string name="character">Hero</string>
+    <string name="adventure">Adventure</string>
+    <string name="quests">Quests</string>
+    <string name="inventory">Inventory</string>
+    <string name="attributes">Attributes</string>
+    <string name="stats">Name:\nLevel:\nXP:\nHealth Points:\nMana Points:\nDamage:\n\nUnspent skill points:\nVitality:\nStrength:\nAgility:\nMagic:\nCharisma:\nLuck\n</string>
+    <string name="startButton">Start</string>
+    <string name="items">Items</string>
+    <string name="shop">Shop</string>
+    <string name="aber">Aber</string>
+    <string name="image">Image</string>
+    <string name="gold">Gold</string>
+    <string name="basic_sword">Basic Sword</string>
+    <string name="damage_1">Damage: 1</string>
+    <string name="_50">50</string>
+    <string name="goldCoins">100</string>
+    <string name="Mission_title">Mission Title</string>
+    <string name="mission_title">Mission Title</string>
+    <string name="reward">Rewards: </string>
+    <string name="missions">Missions</string>
+    <string name="adventure_title">Adventure Title</string>
+    <string name="boss_name">Boss Name</string>
+    <string name="hp_100_100">HP: 100 / 100</string>
+    <string name="_23_59">23:59</string>
+    <string name="_00_00">00:00</string>
+</resources>

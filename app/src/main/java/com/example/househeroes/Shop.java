@@ -3,8 +3,6 @@ package com.example.househeroes;
 import java.util.ArrayList;
 
 public class Shop {
-    private Hero hero = Hero.getInstance();
-
     private ArrayList<Item> shop;
     private ArrayList<String> images;
     private ArrayList<String> itemNames;

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class Inventory {
     private ArrayList<Item> inv;
 
-    private Hero hero = Hero.getInstance();
-
     private ArrayList<String> images;
     private ArrayList<String> itemNames;
     private ArrayList<String> itemDamages;
@@ -23,10 +21,6 @@ public class Inventory {
         images.add(i.getImage());
         itemNames.add(i.getName());
         itemDamages.add(String.valueOf("Damage: " + i.getDamage()));
-    }
-
-    public void equipItem(Item i) {
-        i.equipItem();
     }
 
     public ArrayList<String> getImages() {

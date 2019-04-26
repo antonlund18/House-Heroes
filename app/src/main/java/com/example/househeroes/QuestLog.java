@@ -3,7 +3,6 @@ package com.example.househeroes;
 import java.util.ArrayList;
 
 public class QuestLog {
-    private Hero hero = Hero.getInstance();
 
     private ArrayList<Quest> questLog;
     private ArrayList<String> questNames;
@@ -63,10 +62,5 @@ public class QuestLog {
             builder.append("\n");
         }
         return builder.toString();
-    }
-
-    public void completeQuest(Quest quest) {
-        hero.expGain(quest.getXp());
-        hero.goldGain(quest.getGold());
     }
 }

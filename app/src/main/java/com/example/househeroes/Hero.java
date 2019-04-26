@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Hero {
-    private static Hero hero = new Hero("BLE");
     private String name;        // Name of hero
     private Map<String, Object> attributes;
     private Map<String, Item> equipment;
@@ -28,7 +27,7 @@ public class Hero {
     private Inventory inv;
     private AdventureList alist;
 
-    private Hero(String name) {
+    public Hero(String name) {
         this.name = name;
         inv = new Inventory();
         shop = new Shop();
@@ -48,17 +47,7 @@ public class Hero {
         charisma = 0;
         luck = 0;
         equipment = new HashMap<>();
-        equipment.put("Weapon", null);
-        equipment.put("Chest", null);
-        equipment.put("Legs", null);
-        equipment.put("Gloves", null);
-        equipment.put("Head", null);
         questLog = new QuestLog();
-    }
-
-
-    public static Hero getInstance() {
-        return hero;
     }
 
     public Map<String, Item> getEquipment() {
@@ -140,7 +129,7 @@ public class Hero {
     public void expGain(int amount) {
         exp += amount;
         for(int x = 0; x < 1000; x++) {
-            if(exp > expNeeded()) {
+            if(exp >= expNeeded()) {
                 exp -= expNeeded();
                 ding();
             }
@@ -194,6 +183,22 @@ public class Hero {
         }
     }
 
+    public void setShop(Shop shop) {
+        this.shop = shop;
+    }
+
+    public void setQuestLog(QuestLog questLog) {
+        this.questLog = questLog;
+    }
+
+    public void setInv(Inventory inv) {
+        this.inv = inv;
+    }
+
+    public void setAlist(AdventureList alist) {
+        this.alist = alist;
+    }
+
     public void skillStrength() {
         if(skillPoints > 0) {
             strength += 1;
@@ -229,5 +234,4 @@ public class Hero {
             skillPoints -= 1;
         }
     }
-
 }

@@ -1,17 +1,19 @@
 package com.example.househeroes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+
 public class MainActivity extends AppCompatActivity {
-    private Hero ble = Hero.getInstance();
+    private Hero hero ;
     private Integer lvl;
     private Integer exp;
     private Integer xpNeeded;
-    private String name = ble.getName();
 
 
 
@@ -19,13 +21,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initEnv();
-        main();
-    }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
+        hero = new Hero("BLE");
+
+        initEnv();
         main();
     }
 
@@ -35,22 +34,22 @@ public class MainActivity extends AppCompatActivity {
         TextView showExp = (TextView) findViewById(R.id.exp);
         TextView showNeededExp = (TextView) findViewById(R.id.neededExp);
 
-        lvl = ble.getLvl();
-        exp = ble.getExp();
-        xpNeeded = (int) ble.expNeeded();
+        lvl = hero.getLvl();
+        exp = hero.getExp();
+        xpNeeded = (int) hero.expNeeded();
 
-        showHeroName.setText(ble.getName());
+        showHeroName.setText(hero.getName());
         showLevel.setText("LEVEL: " + lvl.toString());
         showExp.setText(exp.toString());
         showNeededExp.setText(xpNeeded.toString() + " XP");
     }
 
     public void initEnv() {
-        Shop shop = ble.getShop();
-        QuestLog qlog = ble.getQuestLog();
-        AdventureList alist = ble.getAlist();
+        Shop shop = hero.getShop();
+        QuestLog qlog = hero.getQuestLog();
+        AdventureList alist = hero.getAlist();
 
-        ble.goldGain(200);
+        hero.goldGain(200);
 
         Item weapon1 = new Item("Stick", "Weapon", "https://i.redd.it/1sybw1lnwgh01.jpg", 1, 100);
         Item weapon2 = new Item("Butter Knife", "Weapon", "https://photos.gograph.com/thumbs/CSP/CSP466/cartoon-knife-vector-art_k22251607.jpg", 2, 250);
@@ -86,6 +85,10 @@ public class MainActivity extends AppCompatActivity {
         qlog.addQuest(quest2);
         qlog.addQuest(quest3);
         qlog.addQuest(quest4);
+
+        hero.setShop(shop);
+        hero.setQuestLog(qlog);
+        hero.setAlist(alist);
     }
 
     public void openMissions(View view) {
@@ -113,4 +116,28 @@ public class MainActivity extends AppCompatActivity {
         startActivity(openShop);
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // update views with your new hero object
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(hero);
+
+        editor.putString("hero", json);
+        editor.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("hero", gson.toJson(hero));
+        hero = gson.fromJson(json, Hero.class);
+    }
 }

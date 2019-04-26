@@ -18,9 +18,9 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolderOne> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private Hero hero = Hero.getInstance();
-    private Shop shop = hero.getShop();
-    private Inventory inv = hero.getInv();
+    private Hero hero;
+    private Shop shop;
+    private Inventory inv;
 
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<String> mItemNames = new ArrayList<>();
@@ -28,7 +28,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<String> mItemPrices = new ArrayList<>();
     private Context mContext;
 
-    public RecyclerViewAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mItemNames, ArrayList<String> mItemDamages, ArrayList<String> mItemPrices) {
+    public RecyclerViewAdapter(Context mContext, Hero hero, ArrayList<String> mImages, ArrayList<String> mItemNames, ArrayList<String> mItemDamages, ArrayList<String> mItemPrices) {
+        this.hero = hero;
+        shop = hero.getShop();
+        inv = hero.getInv();
         this.mImages = mImages;
         this.mItemNames = mItemNames;
         this.mItemDamages = mItemDamages;

@@ -18,8 +18,8 @@ import java.util.ArrayList;
 public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHolderOne> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private Hero hero = Hero.getInstance();
-    private QuestLog qlog = hero.getQuestLog();
+    private Hero hero;
+    private QuestLog qlog;
 
     private CountDownTimer timer;
 
@@ -31,7 +31,9 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
 
     private Context mContext;
 
-    public MissionAdapter(Context mContext, ArrayList<String> questNames, ArrayList<String> questDesc, ArrayList<String> questxp, ArrayList<String> questGold) {
+    public MissionAdapter(Context mContext, Hero hero, ArrayList<String> questNames, ArrayList<String> questDesc, ArrayList<String> questxp, ArrayList<String> questGold) {
+        this.hero = hero;
+        qlog  = hero.getQuestLog();
         //this.questImages = questImages;
         this.questNames = questNames;
         this.questDesc = questDesc;
@@ -73,7 +75,7 @@ public class MissionAdapter extends RecyclerView.Adapter<MissionAdapter.ViewHold
                 Toast.makeText(mContext, questNames.get(position) + " completed", Toast.LENGTH_SHORT).show();
                 holder.countdown.setTextColor(Color.BLACK);
 
-                qlog.getQuestLog().get(position).complete();
+                hero = qlog.getQuestLog().get(position).complete(hero);
                 qlog.getQuestLog().get(position).setAvail(false);
 
                 timer = new CountDownTimer(qlog.getQuestLog().get(position).getCooldownms(), 1000) {

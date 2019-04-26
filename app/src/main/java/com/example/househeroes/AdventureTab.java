@@ -1,15 +1,18 @@
 package com.example.househeroes;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 
 public class AdventureTab extends AppCompatActivity {
 
-    private Hero hero = Hero.getInstance();
+    private Hero hero;
     private AdventureList alist = hero.getAlist();
     private RecyclerView recyclerView;
 
@@ -31,7 +34,6 @@ public class AdventureTab extends AppCompatActivity {
 
     }
 
-
     public void initImageBitmaps(){
         //questImages = questLog.getQuestImages();
         aname = alist.getAname();
@@ -46,12 +48,36 @@ public class AdventureTab extends AppCompatActivity {
 
     public void initRecyclerView() {
         recyclerView = findViewById(R.id.adventureRecycler);
-        AdventureAdapter adapter = new AdventureAdapter(this, aname, aboss, bosshp, advxp, advgold, reqlvl);
+        AdventureAdapter adapter = new AdventureAdapter(this, hero, aname, aboss, bosshp, advxp, advgold, reqlvl);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        // update views with your new hero object
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+
+        Gson gson = new Gson();
+        String json = gson.toJson(hero);
+
+        editor.putString("hero", json);
+        editor.commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        SharedPreferences prefs = getSharedPreferences("prefs", MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("hero", gson.toJson(hero));
+        hero = gson.fromJson(json, Hero.class);
+    }
 
 }
 

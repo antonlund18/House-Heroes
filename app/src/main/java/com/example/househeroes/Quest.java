@@ -1,8 +1,6 @@
 package com.example.househeroes;
 
 public class Quest {
-    private Hero hero = Hero.getInstance();
-
     private String title;
     private String desc;
     private String image;
@@ -57,8 +55,9 @@ public class Quest {
         return completed;
     }
 
-    public void complete() {
+    public Hero complete(Hero hero) {
         hero.goldGain(gold);
         hero.expGain(xp);
+        return hero;
     }
 }

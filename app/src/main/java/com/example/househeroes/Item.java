@@ -5,7 +5,6 @@ import android.util.Log;
 import static android.support.constraint.Constraints.TAG;
 
 public class Item {
-    private Hero hero = Hero.getInstance();
     private String name;
     private String image;
     private int damage;
@@ -22,7 +21,7 @@ public class Item {
         equipped = false;
     }
 
-    public void equipItem() {
+    public void equipItem(Hero hero) {
         Log.d(TAG, "equipItem: " + this.getDamage());
         hero.getEquipment().put(type, this);
         hero.setDmg();

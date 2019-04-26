@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:padding="15dp"
+    android:id="@+id/statslist"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:id="@+id/attribute_image"
+        android:src="@mipmap/ic_launcher"/>
+        />
+
+    <TextView
+        android:id="@+id/attribute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Strength"
+        android:layout_toRightOf="@id/attribute_image"
+        android:layout_marginLeft="10dp"
+        />
+
+    <TextView
+        android:id="@+id/attribute_description"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/attribute"
+        android:layout_alignLeft="@id/attribute"
+        android:text="Strength will increase your damage, so you can complete adventures faster"
+        android:textSize="12dp" />
+
+    <TextView
+        android:id="@+id/value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="39dp"
+        android:layout_marginLeft="39dp"
+        android:layout_toEndOf="@+id/attribute_description"
+        android:layout_toRightOf="@+id/attribute_description"
+        android:text="10"
+        android:textSize="18dp" />
+
+</RelativeLayout>

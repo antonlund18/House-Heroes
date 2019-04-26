@@ -1,7 +1,6 @@
 package com.example.househeroes;
 
 public class Adventure {
-    private Hero hero = Hero.getInstance();
     private String name, boss;
     private int exp, gold, cooldown, currenthp, maxhp, reqlvl;
     private boolean complete, avail;
@@ -15,7 +14,7 @@ public class Adventure {
         maxhp = hp;
         currenthp = maxhp;
         avail = true;
-        cooldown = 0;
+        cooldown = 0;     // Pass this variable in const later
         this.reqlvl = reqlvl;
     }
 
@@ -76,10 +75,9 @@ public class Adventure {
         return builder.toString();
     }
 
-    public void completeAdv() {
+    public void completeAdv(Hero hero) {
             hero.expGain(exp);
             hero.goldGain(gold);
     }
-
 
 }

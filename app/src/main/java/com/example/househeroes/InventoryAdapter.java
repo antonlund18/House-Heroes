@@ -19,8 +19,8 @@ import java.util.ArrayList;
 public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.ViewHolderOne> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private Hero hero = Hero.getInstance();
-    private Shop shop = hero.getShop();
+    private Hero hero;
+    private Shop shop;
     private Inventory inv = hero.getInv();
 
     private ArrayList<String> mImages = new ArrayList<>();
@@ -28,7 +28,9 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
     private ArrayList<String> mItemDamages = new ArrayList<>();
     private Context mContext;
 
-    public InventoryAdapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mItemNames, ArrayList<String> mItemDamages) {
+    public InventoryAdapter(Context mContext, Hero hero, ArrayList<String> mImages, ArrayList<String> mItemNames, ArrayList<String> mItemDamages) {
+        this.hero = hero;
+        shop = hero.getShop();
         this.mImages = mImages;
         this.mItemNames = mItemNames;
         this.mItemDamages = mItemDamages;
@@ -58,7 +60,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryAdapter.View
         holder.test123.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                inv.getInventory().get(position).equipItem();
+                inv.getInventory().get(position).equipItem(hero);
                 Toast.makeText(mContext, mItemNames.get(position) + " equipped", Toast.LENGTH_SHORT).show();
                 }
         });

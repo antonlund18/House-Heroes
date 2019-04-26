@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.ViewHolderOne> {
     private static final String TAG = "RecyclerViewAdapter";
 
-    private Hero hero = Hero.getInstance();
-    private AdventureList alist = hero.getAlist();
+    private Hero hero;
+    private AdventureList alist;
 
     private ArrayList<String> questImages;
     private ArrayList<String> aname;
@@ -29,7 +29,10 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.View
     private CountDownTimer timer;
 
     private Context mContext;
-    public AdventureAdapter(Context mContext, ArrayList<String> aname, ArrayList<String> aboss, ArrayList<String> bosshp, ArrayList<String> advxp, ArrayList<String> advgold, ArrayList<String> reqlvl) {
+
+    public AdventureAdapter(Context mContext, Hero hero, ArrayList<String> aname, ArrayList<String> aboss, ArrayList<String> bosshp, ArrayList<String> advxp, ArrayList<String> advgold, ArrayList<String> reqlvl) {
+        this.hero = hero;
+        alist = hero.getAlist();
         //this.questImages = questImages;
         this.aname = aname;
         this.aboss = aboss;
@@ -88,7 +91,7 @@ public class AdventureAdapter extends RecyclerView.Adapter<AdventureAdapter.View
                         @Override
                         public void onFinish() {
                             alist.getAlist().get(position).setAvail(true);
-                            alist.getAlist().get(position).completeAdv();
+                            alist.getAlist().get(position).completeAdv(hero);
                         }
 
 
